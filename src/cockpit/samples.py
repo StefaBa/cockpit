@@ -129,6 +129,12 @@ class MemorySampler(Sampler):
         samples['memory.cached'] = 1024 * (items['Buffers'] + items['Cached'])
         samples['memory.swap-used'] = 1024 * (items['SwapTotal'] - items['SwapFree'])
 
+        # TODO:
+        # zfs_arc_current_size = "grep -w c /proc/spl/kstat/zfs/arcstats | tr -s ' ' | cut -d ' ' -f 3"
+        # zfs_arc_minimum_size = "grep -w c_min /proc/spl/kstat/zfs/arcstats | tr -s ' ' | cut -d ' ' -f 3"
+        # to fix https://github.com/cockpit-project/cockpit/issues/19482
+        # as this https://github.com/openzfs/zfs/issues/10255 seems harder
+
 
 class CPUTemperatureSampler(Sampler):
     # Cache found sensors, as they can't be hotplugged.
